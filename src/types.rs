@@ -1,9 +1,12 @@
+#[cfg(feature = "schemars")]
+use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
 use serde_with::skip_serializing_none;
 use std::collections::HashMap;
 
 #[derive(Clone, Debug, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 pub enum AccessTokenCategory {
     Internal,
     Access,
@@ -15,6 +18,7 @@ pub enum AccessTokenCategory {
 }
 
 #[derive(Clone, Debug, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 pub enum IDTokenCategory {
     Internal,
     Access,
@@ -26,6 +30,7 @@ pub enum IDTokenCategory {
 }
 
 #[derive(Clone, Debug, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "UPPERCASE")]
 pub enum JsonNodeNodeType {
     Array,
@@ -40,6 +45,7 @@ pub enum JsonNodeNodeType {
 }
 
 #[derive(Clone, Debug, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "UPPERCASE")]
 pub enum KeysMetadataRepresentationKeyMetadataRepresentationUse {
     Sig,
@@ -47,6 +53,7 @@ pub enum KeysMetadataRepresentationKeyMetadataRepresentationUse {
 }
 
 #[derive(Clone, Debug, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "UPPERCASE")]
 pub enum PartialImportRepresentationPolicy {
     Skip,
@@ -55,6 +62,7 @@ pub enum PartialImportRepresentationPolicy {
 }
 
 #[derive(Clone, Debug, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "UPPERCASE")]
 pub enum PolicyRepresentationDecisionStrategy {
     Affirmative,
@@ -63,6 +71,7 @@ pub enum PolicyRepresentationDecisionStrategy {
 }
 
 #[derive(Clone, Debug, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "UPPERCASE")]
 pub enum PolicyRepresentationLogic {
     Positive,
@@ -70,6 +79,7 @@ pub enum PolicyRepresentationLogic {
 }
 
 #[derive(Clone, Debug, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "UPPERCASE")]
 pub enum ResourceServerRepresentationDecisionStrategy {
     Affirmative,
@@ -78,6 +88,7 @@ pub enum ResourceServerRepresentationDecisionStrategy {
 }
 
 #[derive(Clone, Debug, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "UPPERCASE")]
 pub enum ResourceServerRepresentationPolicyEnforcementMode {
     Enforcing,
@@ -87,6 +98,7 @@ pub enum ResourceServerRepresentationPolicyEnforcementMode {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 pub struct AccessToken {
     pub acr: Option<String>,
     pub address: Option<AddressClaimSet>,
@@ -139,6 +151,7 @@ pub struct AccessToken {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 pub struct AccessTokenAccess {
     pub roles: Option<Vec<String>>,
     pub verify_caller: Option<bool>,
@@ -146,12 +159,14 @@ pub struct AccessTokenAccess {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 pub struct AccessTokenAuthorization {
     pub permissions: Option<Vec<Permission>>,
 }
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 pub struct AccessTokenCertConf {
     #[serde(rename = "x5t#S256")]
     pub x5t_s256: Option<String>,
@@ -159,6 +174,7 @@ pub struct AccessTokenCertConf {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 pub struct AddressClaimSet {
     pub country: Option<String>,
     pub formatted: Option<String>,
@@ -170,6 +186,7 @@ pub struct AddressClaimSet {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "camelCase")]
 pub struct AuthenticationExecutionExportRepresentation {
     pub authenticator: Option<String>,
@@ -183,6 +200,7 @@ pub struct AuthenticationExecutionExportRepresentation {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "camelCase")]
 pub struct AuthenticationExecutionInfoRepresentation {
     pub alias: Option<String>,
@@ -202,6 +220,7 @@ pub struct AuthenticationExecutionInfoRepresentation {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "camelCase")]
 pub struct AuthenticationExecutionRepresentation {
     pub authenticator: Option<String>,
@@ -216,6 +235,7 @@ pub struct AuthenticationExecutionRepresentation {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "camelCase")]
 pub struct AuthenticationFlowRepresentation {
     pub alias: Option<String>,
@@ -229,6 +249,7 @@ pub struct AuthenticationFlowRepresentation {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "camelCase")]
 pub struct AuthenticatorConfigInfoRepresentation {
     pub help_text: Option<String>,
@@ -239,6 +260,7 @@ pub struct AuthenticatorConfigInfoRepresentation {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 pub struct AuthenticatorConfigRepresentation {
     pub alias: Option<String>,
     pub config: Option<HashMap<String, Value>>,
@@ -247,6 +269,7 @@ pub struct AuthenticatorConfigRepresentation {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "camelCase")]
 pub struct CertificateRepresentation {
     pub certificate: Option<String>,
@@ -257,6 +280,7 @@ pub struct CertificateRepresentation {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 pub struct ClientInitialAccessCreatePresentation {
     pub count: Option<i32>,
     pub expiration: Option<i32>,
@@ -264,6 +288,7 @@ pub struct ClientInitialAccessCreatePresentation {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "camelCase")]
 pub struct ClientInitialAccessPresentation {
     pub count: Option<i32>,
@@ -276,6 +301,7 @@ pub struct ClientInitialAccessPresentation {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 pub struct ClientMappingsRepresentation {
     pub client: Option<String>,
     pub id: Option<String>,
@@ -284,12 +310,14 @@ pub struct ClientMappingsRepresentation {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 pub struct ClientPoliciesRepresentation {
     pub policies: Option<Vec<ClientPolicyRepresentation>>,
 }
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 pub struct ClientPolicyConditionRepresentation {
     pub condition: Option<String>,
     pub configuration: Option<JsonNode>,
@@ -297,6 +325,7 @@ pub struct ClientPolicyConditionRepresentation {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 pub struct ClientPolicyExecutorRepresentation {
     pub configuration: Option<JsonNode>,
     pub executor: Option<String>,
@@ -304,6 +333,7 @@ pub struct ClientPolicyExecutorRepresentation {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 pub struct ClientPolicyRepresentation {
     pub conditions: Option<Vec<ClientPolicyConditionRepresentation>>,
     pub description: Option<String>,
@@ -314,6 +344,7 @@ pub struct ClientPolicyRepresentation {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 pub struct ClientProfileRepresentation {
     pub description: Option<String>,
     pub executors: Option<Vec<ClientPolicyExecutorRepresentation>>,
@@ -322,6 +353,7 @@ pub struct ClientProfileRepresentation {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "camelCase")]
 pub struct ClientProfilesRepresentation {
     pub global_profiles: Option<Vec<ClientProfileRepresentation>>,
@@ -330,6 +362,7 @@ pub struct ClientProfilesRepresentation {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "camelCase")]
 pub struct ClientRepresentation {
     pub access: Option<HashMap<String, Value>>,
@@ -374,6 +407,7 @@ pub struct ClientRepresentation {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "camelCase")]
 pub struct ClientScopeEvaluateResourceProtocolMapperEvaluationRepresentation {
     pub container_id: Option<String>,
@@ -386,6 +420,7 @@ pub struct ClientScopeEvaluateResourceProtocolMapperEvaluationRepresentation {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "camelCase")]
 pub struct ClientScopeRepresentation {
     pub attributes: Option<HashMap<String, Value>>,
@@ -398,6 +433,7 @@ pub struct ClientScopeRepresentation {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "camelCase")]
 pub struct ComponentExportRepresentation {
     pub config: Option<MultivaluedHashMap>,
@@ -410,6 +446,7 @@ pub struct ComponentExportRepresentation {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "camelCase")]
 pub struct ComponentRepresentation {
     pub config: Option<MultivaluedHashMap>,
@@ -423,6 +460,7 @@ pub struct ComponentRepresentation {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "camelCase")]
 pub struct ConfigPropertyRepresentation {
     pub default_value: Option<Value>,
@@ -438,6 +476,7 @@ pub struct ConfigPropertyRepresentation {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "camelCase")]
 pub struct CredentialRepresentation {
     pub created_date: Option<i64>,
@@ -454,6 +493,7 @@ pub struct CredentialRepresentation {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "camelCase")]
 pub struct CryptoInfoRepresentation {
     pub crypto_provider: Option<String>,
@@ -462,6 +502,7 @@ pub struct CryptoInfoRepresentation {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "camelCase")]
 pub struct FederatedIdentityRepresentation {
     pub identity_provider: Option<String>,
@@ -471,6 +512,7 @@ pub struct FederatedIdentityRepresentation {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "camelCase")]
 pub struct GlobalRequestResult {
     pub failed_requests: Option<Vec<String>>,
@@ -479,6 +521,7 @@ pub struct GlobalRequestResult {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "camelCase")]
 pub struct GroupRepresentation {
     pub access: Option<HashMap<String, Value>>,
@@ -493,6 +536,7 @@ pub struct GroupRepresentation {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 pub struct IDToken {
     pub acr: Option<String>,
     pub address: Option<AddressClaimSet>,
@@ -537,6 +581,7 @@ pub struct IDToken {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "camelCase")]
 pub struct IdentityProviderMapperRepresentation {
     pub config: Option<HashMap<String, Value>>,
@@ -548,6 +593,7 @@ pub struct IdentityProviderMapperRepresentation {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "camelCase")]
 pub struct IdentityProviderRepresentation {
     pub add_read_token_role_on_create: Option<bool>,
@@ -566,6 +612,7 @@ pub struct IdentityProviderRepresentation {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "camelCase")]
 pub struct JsonNode {
     pub array: Option<bool>,
@@ -594,6 +641,7 @@ pub struct JsonNode {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "camelCase")]
 pub struct KeyStoreConfig {
     pub format: Option<String>,
@@ -606,6 +654,7 @@ pub struct KeyStoreConfig {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 pub struct KeysMetadataRepresentation {
     pub active: Option<HashMap<String, Value>>,
     pub keys: Option<Vec<KeysMetadataRepresentationKeyMetadataRepresentation>>,
@@ -613,6 +662,7 @@ pub struct KeysMetadataRepresentation {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "camelCase")]
 pub struct KeysMetadataRepresentationKeyMetadataRepresentation {
     pub algorithm: Option<String>,
@@ -630,6 +680,7 @@ pub struct KeysMetadataRepresentationKeyMetadataRepresentation {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "camelCase")]
 pub struct ManagementPermissionReference {
     pub enabled: Option<bool>,
@@ -639,6 +690,7 @@ pub struct ManagementPermissionReference {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "camelCase")]
 pub struct MappingsRepresentation {
     pub client_mappings: Option<HashMap<String, Value>>,
@@ -647,6 +699,7 @@ pub struct MappingsRepresentation {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "camelCase")]
 pub struct MemoryInfoRepresentation {
     pub free: Option<i64>,
@@ -660,6 +713,7 @@ pub struct MemoryInfoRepresentation {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "camelCase")]
 pub struct MultivaluedHashMap {
     pub empty: Option<bool>,
@@ -669,6 +723,7 @@ pub struct MultivaluedHashMap {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "camelCase")]
 pub struct PartialImportRepresentation {
     pub clients: Option<Vec<ClientRepresentation>>,
@@ -683,6 +738,7 @@ pub struct PartialImportRepresentation {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "camelCase")]
 pub struct PasswordPolicyTypeRepresentation {
     pub config_type: Option<String>,
@@ -694,6 +750,7 @@ pub struct PasswordPolicyTypeRepresentation {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 pub struct Permission {
     pub claims: Option<HashMap<String, Value>>,
     pub rsid: Option<String>,
@@ -703,6 +760,7 @@ pub struct Permission {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "camelCase")]
 pub struct PolicyRepresentation {
     pub config: Option<HashMap<String, Value>>,
@@ -723,6 +781,7 @@ pub struct PolicyRepresentation {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "camelCase")]
 pub struct ProfileInfoRepresentation {
     pub disabled_features: Option<Vec<String>>,
@@ -733,6 +792,7 @@ pub struct ProfileInfoRepresentation {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "camelCase")]
 pub struct ProtocolMapperRepresentation {
     pub config: Option<HashMap<String, Value>>,
@@ -744,6 +804,7 @@ pub struct ProtocolMapperRepresentation {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "camelCase")]
 pub struct ProviderRepresentation {
     pub operational_info: Option<HashMap<String, Value>>,
@@ -752,6 +813,7 @@ pub struct ProviderRepresentation {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "camelCase")]
 pub struct RealmEventsConfigRepresentation {
     pub admin_events_details_enabled: Option<bool>,
@@ -764,6 +826,7 @@ pub struct RealmEventsConfigRepresentation {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "camelCase")]
 pub struct RealmRepresentation {
     pub access_code_lifespan: Option<i32>,
@@ -894,6 +957,7 @@ pub struct RealmRepresentation {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "camelCase")]
 pub struct RequiredActionProviderRepresentation {
     pub alias: Option<String>,
@@ -907,6 +971,7 @@ pub struct RequiredActionProviderRepresentation {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "camelCase")]
 pub struct ResourceRepresentation {
     pub id: String,
@@ -924,6 +989,7 @@ pub struct ResourceRepresentation {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "camelCase")]
 pub struct ResourceServerRepresentation {
     pub allow_remote_resource_management: Option<bool>,
@@ -939,6 +1005,7 @@ pub struct ResourceServerRepresentation {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "camelCase")]
 pub struct RoleRepresentation {
     pub attributes: Option<HashMap<String, Value>>,
@@ -953,6 +1020,7 @@ pub struct RoleRepresentation {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 pub struct RoleRepresentationComposites {
     pub client: Option<HashMap<String, Value>>,
     pub realm: Option<Vec<String>>,
@@ -960,6 +1028,7 @@ pub struct RoleRepresentationComposites {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 pub struct RolesRepresentation {
     pub client: Option<HashMap<String, Value>>,
     pub realm: Option<Vec<RoleRepresentation>>,
@@ -967,6 +1036,7 @@ pub struct RolesRepresentation {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "camelCase")]
 pub struct ScopeMappingRepresentation {
     pub client: Option<String>,
@@ -978,6 +1048,7 @@ pub struct ScopeMappingRepresentation {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "camelCase")]
 pub struct ScopeRepresentation {
     pub display_name: Option<String>,
@@ -990,6 +1061,7 @@ pub struct ScopeRepresentation {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "camelCase")]
 pub struct ServerInfoRepresentation {
     pub builtin_protocol_mappers: Option<HashMap<String, Value>>,
@@ -1011,6 +1083,7 @@ pub struct ServerInfoRepresentation {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 pub struct SpiInfoRepresentation {
     pub internal: Option<bool>,
     pub providers: Option<HashMap<String, Value>>,
@@ -1018,6 +1091,7 @@ pub struct SpiInfoRepresentation {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "camelCase")]
 pub struct SystemInfoRepresentation {
     pub file_encoding: Option<String>,
@@ -1042,6 +1116,7 @@ pub struct SystemInfoRepresentation {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "camelCase")]
 pub struct UserConsentRepresentation {
     pub client_id: Option<String>,
@@ -1052,6 +1127,7 @@ pub struct UserConsentRepresentation {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "camelCase")]
 pub struct UserFederationMapperRepresentation {
     pub config: Option<HashMap<String, Value>>,
@@ -1063,6 +1139,7 @@ pub struct UserFederationMapperRepresentation {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "camelCase")]
 pub struct UserFederationProviderRepresentation {
     pub changed_sync_period: Option<i32>,
@@ -1077,6 +1154,7 @@ pub struct UserFederationProviderRepresentation {
 
 #[skip_serializing_none]
 #[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
+#[cfg_attr(feature = "schemars", derive(JsonSchema))]
 #[serde(rename_all = "camelCase")]
 pub struct UserRepresentation {
     pub access: Option<HashMap<String, Value>>,
